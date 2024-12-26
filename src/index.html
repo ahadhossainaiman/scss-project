@@ -1,0 +1,1017 @@
+---
+title: "Pixel Perfect Websites | Code Stitch Web Designs | Denver, CO"
+description: "Meta description for the page"
+preloadImg: "/assets/images/landing.jpg"
+permalink: "/"
+tags: "sitemap" # Sitemap will use all pages in content/, due to content.json. As index.html is not included in content/ we need to manually add the sitemap tag to this page (only).
+eleventyNavigation:
+    key: Home
+    order: 100
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="./assets/css/local.css" />
+    <link rel="stylesheet" href="./assets/css/critical.css" />
+    <link rel="stylesheet" href="/assets/css/projects.css" />
+
+    <!-- Script for Netlify Identity -->
+    <script
+        defer
+        src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
+    <script defer>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", (user) => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+
+    <!-- JSON Schema Markup -->
+    <!-- prettier-ignore-start -->
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "LocalBusiness",
+            "name": "{{ client.name }}",
+            {% if preloadImg %}"image": "{{ preloadImg }}",{% endif %}
+            {% if client.phoneFormatted %}"telephone": "{{ client.phoneFormatted }}",{% endif %}
+            {% if client.email %}"email": "{{ client.email }}",{% endif %}
+            {% if client.address %}
+                "address": {
+                    "@type": "PostalAddress"{% if client.address.lineOne %},
+                        "streetAddress": "{{ client.address.lineOne }}{% if client.address.lineTwo %}, {{ client.address.lineTwo }}{% endif %}"
+                    {% endif %}
+                    {% if client.address.city %},
+                        "addressLocality": "{{ client.address.city }}"
+                    {% endif %}
+                    {% if client.address.state %},
+                        "addressRegion": "{{ client.address.state }}"
+                    {% endif %}
+                    {% if client.address.zip %},
+                        "postalCode": "{{ client.address.zip }}"
+                    {% endif %}
+                    {% if client.address.country %},
+                        "addressCountry": "{{ client.address.country }}"
+                    {% endif %}
+                },
+            {% endif %}
+            {% if client.domain and page.url %}"url": "{{ client.domain }}{{ page.url }}",{% endif %}
+            {% if client.socials %}
+                "sameAs": [{% for platform, url in client.socials %}
+                        {% if not loop.first %},{% endif %}
+                        "{{ url }}"
+                    {% endfor %}]
+            {% endif %}
+        }
+    </script>
+    <!-- prettier-ignore-end -->
+{% endblock %}
+
+{% block body %}
+    <!-- ============================================ -->
+    <!--                    Hero                      -->
+    <!-- ============================================ -->
+
+    <section id="hero">
+        <div class="cs-container">
+            <div class="cs-flex-group">
+                <span class="cs-title">Your Local</span>
+                <h1 class="cs-subTopper">Los Angeles</h1>
+                <p class="cs-title">Websites solutions</p>
+                <p class="cs-text">
+                    100% Hand-coded, fast websites starting at $200/mo.
+                </p>
+                <!-- <a href="/about" class="cs-button-solid">Explore More</a> -->
+                <div class="cs-button-custom">
+                    <a href="/contact">
+                        I'M INTERESTED
+                        <span class="cs-icon">
+                            <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 13 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.3058 1.69613C12.3058 1.14385 11.8581 0.696134 11.3058 0.696133L2.30582 0.696133C1.75354 0.696133 1.30582 1.14385 1.30582 1.69613C1.30582 2.24842 1.75354 2.69613 2.30582 2.69613L10.3058 2.69613L10.3058 10.6961C10.3058 11.2484 10.7535 11.6961 11.3058 11.6961C11.8581 11.6961 12.3058 11.2484 12.3058 10.6961L12.3058 1.69613ZM1.40633 13.0098L12.0129 2.40324L10.5987 0.989026L-0.00788796 11.5956L1.40633 13.0098Z"
+                                    fill="white"
+                                />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Image -->
+        <picture class="cs-picture">
+            <source
+                media="(max-width: 600px)"
+                srcset="/assets/images/small-bg.png"
+            />
+            <source
+                media="(min-width: 601px)"
+                srcset="./assets/images/bg.png"
+            />
+            <img
+                aria-hidden="true"
+                decoding="async"
+                src="./assets/images/bg.png"
+                alt="new home"
+                width="2500"
+                height="1667"
+                loading="eager"
+            />
+        </picture>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                  Services                    -->
+    <!-- ============================================ -->
+
+    <!-- <p class="cs-title">Our Services</p> -->
+    <section id="services" class="card-container">
+        <!-- Get Icons From flaticon.com -->
+        <p>OUR SERVICES</p>
+        <h1>Services we <span style="color: #236AD9">provide</span></h1>
+        <p class="service-text">
+            Expert web design, development, and digital marketing services to
+            help your business thrive in the heart of Los Angeles. Let us help
+            you stand out online with modern, responsive, and impactful
+            websites.
+        </p>
+        <div class="services">
+            <div class="card">
+                <picture>
+                    <!-- <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="./assets/svgs/service1.svg"
+                        alt="appliance"
+                        width="48"
+                        height="48"
+                    /> -->
+                    <svg
+                        width="96"
+                        height="96"
+                        viewBox="0 0 96 96"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect width="96" height="96" rx="48" fill="#236AD9" />
+                        <path
+                            d="M64.2806 40.8749C64.2806 45.4899 64.2806 50.0399 64.2806 54.6224C51.1156 54.6224 37.9756 54.6224 24.7843 54.6224C24.7756 54.4512 24.7618 54.2862 24.7606 54.1224C24.7593 46.8062 24.7593 39.4899 24.7606 32.1724C24.7606 30.3762 25.7718 29.3624 27.5768 29.3624C38.8843 29.3599 50.1931 29.3637 61.5006 29.3574C62.4906 29.3574 63.2943 29.6774 63.8693 30.5112C64.0331 30.7487 64.0431 30.9187 63.8431 31.1599C61.0818 34.4824 58.3318 37.8137 55.5843 41.1474C55.4243 41.3412 55.2831 41.4449 55.0006 41.4087C53.3618 41.1974 52.0918 41.8637 51.0818 43.1174C50.1943 44.2199 49.7681 45.5049 49.5531 46.8824C49.3593 48.1274 48.9231 49.2874 48.2781 50.3724C47.8118 51.1562 48.1056 51.6687 49.0181 51.6899C50.8968 51.7324 52.7593 51.6287 54.5631 51.0362C55.6593 50.6762 56.6531 50.1412 57.4556 49.2924C58.4368 48.2549 58.8706 47.0062 58.8981 45.5937C58.9018 45.4137 58.9556 45.1699 59.0781 45.0674C60.7356 43.6949 62.4081 42.3412 64.0793 40.9849C64.1243 40.9474 64.1818 40.9274 64.2806 40.8749ZM31.9893 31.9099C30.6656 31.9099 29.3406 31.9074 28.0168 31.9112C27.2831 31.9137 27.0568 32.1337 27.0556 32.8487C27.0518 34.9049 27.0518 36.9624 27.0556 39.0187C27.0568 39.7074 27.2893 39.9462 27.9856 39.9474C30.6493 39.9537 33.3131 39.9537 35.9768 39.9474C36.6543 39.9462 36.8993 39.6849 36.9006 39.0024C36.9031 36.9612 36.9031 34.9199 36.9006 32.8799C36.8993 32.1449 36.6668 31.9149 35.9143 31.9124C34.6056 31.9074 33.2981 31.9099 31.9893 31.9099ZM43.2993 39.9287C44.6256 39.9287 45.9506 39.9312 47.2768 39.9274C48.0118 39.9262 48.2381 39.7062 48.2393 38.9912C48.2418 36.9324 48.2418 34.8724 48.2393 32.8137C48.2381 32.1524 48.0018 31.9049 47.3418 31.9024C44.6593 31.8962 41.9768 31.8962 39.2943 31.9024C38.6393 31.9037 38.4018 32.1574 38.4006 32.8187C38.3981 34.8774 38.3981 36.9374 38.4006 38.9962C38.4018 39.6874 38.6343 39.9237 39.3243 39.9262C40.6481 39.9312 41.9731 39.9287 43.2993 39.9287ZM31.9318 43.1737C33.2881 43.1737 34.6431 43.1762 35.9993 43.1724C36.5606 43.1712 36.8993 42.8924 36.8968 42.4462C36.8956 42.0062 36.5593 41.7312 35.9893 41.7312C33.3093 41.7274 30.6281 41.7274 27.9481 41.7312C27.3593 41.7324 27.0581 41.9887 27.0606 42.4562C27.0631 42.9149 27.3793 43.1724 27.9568 43.1737C29.2831 43.1749 30.6068 43.1737 31.9318 43.1737ZM43.3156 43.1737C44.6556 43.1737 45.9956 43.1762 47.3368 43.1724C47.9156 43.1712 48.2318 42.9137 48.2356 42.4549C48.2381 41.9949 47.9281 41.7324 47.3443 41.7312C44.6643 41.7274 41.9831 41.7274 39.3031 41.7312C38.7218 41.7324 38.4043 41.9937 38.4031 42.4474C38.4018 42.9024 38.7256 43.1712 39.2956 43.1724C40.6343 43.1762 41.9756 43.1737 43.3156 43.1737ZM30.7031 46.0987C31.6381 46.0987 32.5718 46.1024 33.5068 46.0974C34.0818 46.0949 34.3943 45.8287 34.3843 45.3662C34.3743 44.9249 34.0656 44.6662 33.5193 44.6662C31.6506 44.6624 29.7818 44.6624 27.9118 44.6662C27.3693 44.6674 27.0631 44.9299 27.0606 45.3762C27.0568 45.8274 27.3556 46.0937 27.8993 46.0974C28.8343 46.1024 29.7681 46.0987 30.7031 46.0987ZM42.0993 44.6649C41.1343 44.6649 40.1681 44.6599 39.2031 44.6674C38.7081 44.6712 38.4006 44.9574 38.4018 45.3837C38.4031 45.8087 38.7081 46.0937 39.2068 46.0962C41.1068 46.1024 43.0068 46.1024 44.9068 46.0962C45.4281 46.0949 45.7156 45.8387 45.7268 45.4037C45.7381 44.9524 45.4318 44.6699 44.9031 44.6662C43.9681 44.6599 43.0343 44.6637 42.0993 44.6649Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M24.7593 56.125C37.9718 56.125 51.1118 56.125 64.338 56.125C64.298 56.8188 64.3256 57.4938 64.2068 58.1425C64.0131 59.1963 63.0055 59.9813 61.9243 60.025C61.768 60.0313 61.613 60.0288 61.4568 60.0288C50.1805 60.0288 38.9043 60.01 27.628 60.05C25.9718 60.0562 24.643 58.9587 24.7568 57.14C24.7768 56.8162 24.7593 56.49 24.7593 56.125ZM44.5368 58.8075C44.9505 58.8025 45.2668 58.475 45.2618 58.0588C45.2568 57.6475 44.9218 57.315 44.5193 57.32C44.118 57.325 43.788 57.6687 43.7918 58.0762C43.7968 58.4887 44.1268 58.8125 44.5368 58.8075Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M61.5146 41.2039C60.7634 40.4514 60.0396 39.7264 59.2871 38.9714C59.3034 38.9451 59.3459 38.8664 59.4021 38.7989C61.7034 36.0126 64.0021 33.2251 66.3084 30.4426C67.0709 29.5226 68.1684 29.1676 69.2371 29.5264C70.3471 29.8989 70.9784 30.6989 71.1059 31.8614C71.1984 32.7001 70.9496 33.4789 70.3059 34.0126C67.3821 36.4376 64.4284 38.8264 61.5146 41.2039Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M50.1855 50.2256C50.5418 48.7844 50.8755 47.3831 51.2368 45.9894C51.4755 45.0681 51.9018 44.2244 52.6293 43.6044C53.018 43.2731 53.5093 43.0094 53.998 42.8631C54.613 42.6781 55.208 42.7831 55.6793 43.3406C56.1105 43.8506 56.6043 44.3106 57.0905 44.7706C57.323 44.9906 57.423 45.2244 57.4268 45.5444C57.4455 47.1944 56.683 48.3806 55.2655 49.1456C53.6618 50.0094 51.9043 50.1944 50.1855 50.2256Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M44.5309 66.7199C41.6634 66.7199 38.7959 66.7199 35.9284 66.7187C35.7421 66.7187 35.5521 66.7237 35.3696 66.6937C34.9609 66.6274 34.7396 66.3699 34.7196 65.9599C34.7009 65.5674 34.9809 65.2474 35.3871 65.1862C35.5246 65.1649 35.6671 65.1737 35.8071 65.1737C41.6196 65.1737 47.4321 65.1724 53.2446 65.1749C53.4146 65.1749 53.5934 65.1637 53.7546 65.2074C54.1471 65.3149 54.3596 65.5862 54.3309 66.0012C54.3046 66.3949 54.0746 66.6287 53.6909 66.6937C53.5084 66.7249 53.3184 66.7199 53.1321 66.7199C50.2659 66.7212 47.3984 66.7199 44.5309 66.7199Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M49.1766 63.6994C46.0503 63.6994 43.0016 63.6994 39.8828 63.6994C40.1828 62.9869 40.4541 62.3144 40.7541 61.6569C40.7941 61.5694 40.9778 61.5031 41.0953 61.5031C43.3878 61.4944 45.6803 61.4919 47.9728 61.5069C48.1003 61.5081 48.2891 61.6369 48.3441 61.7544C48.6316 62.3731 48.8853 63.0081 49.1766 63.6994Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M60.2584 42.2128C59.6184 42.7341 58.9446 43.2803 58.2971 43.8066C57.7371 43.2528 57.1996 42.7203 56.6309 42.1591C57.1671 41.5078 57.7196 40.8378 58.2496 40.1953C58.9234 40.8728 59.5796 41.5303 60.2584 42.2128Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M28.5273 33.3711C30.8386 33.3711 33.1098 33.3711 35.4098 33.3711C35.4098 35.0698 35.4098 36.7473 35.4098 38.4586C33.1298 38.4586 30.8461 38.4586 28.5273 38.4586C28.5273 36.7823 28.5273 35.0936 28.5273 33.3711Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M46.7773 33.3652C46.7773 35.084 46.7773 36.7602 46.7773 38.4652C44.4686 38.4652 42.1848 38.4652 39.8711 38.4652C39.8711 36.7652 39.8711 35.074 39.8711 33.3652C42.1761 33.3652 44.4498 33.3652 46.7773 33.3652Z"
+                            fill="white"
+                        />
+                    </svg>
+                </picture>
+                <h2>Custom website design</h2>
+                <p>
+                    Our custom-coded websites are tailored to meet the specific
+                    needs of your business. We don’t rely on WordPress or other
+                    content...
+                </p>
+                <div class="card-btn">
+                    <a href="/contact">
+                        READ MORE
+                        <span class="cs-icon">
+                            <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 13 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.3058 1.69613C12.3058 1.14385 11.8581 0.696134 11.3058 0.696133L2.30582 0.696133C1.75354 0.696133 1.30582 1.14385 1.30582 1.69613C1.30582 2.24842 1.75354 2.69613 2.30582 2.69613L10.3058 2.69613L10.3058 10.6961C10.3058 11.2484 10.7535 11.6961 11.3058 11.6961C11.8581 11.6961 12.3058 11.2484 12.3058 10.6961L12.3058 1.69613ZM1.40633 13.0098L12.0129 2.40324L10.5987 0.989026L-0.00788796 11.5956L1.40633 13.0098Z"
+                                    fill="#68A3FF"
+                                />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <picture>
+                    <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="./assets/svgs/service2.svg"
+                        alt="appliance"
+                        width="48"
+                        height="48"
+                    />
+                </picture>
+                <h2>High-performance hosting</h2>
+                <p>
+                    We provide top-tier hosting solutions, ensuring your website
+                    is always up and running smoothly. With our hosting, you can
+                    expect fast load...
+                </p>
+                <div class="card-btn">
+                    <a href="/contact">
+                        READ MORE
+                        <span class="cs-icon">
+                            <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 13 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.3058 1.69613C12.3058 1.14385 11.8581 0.696134 11.3058 0.696133L2.30582 0.696133C1.75354 0.696133 1.30582 1.14385 1.30582 1.69613C1.30582 2.24842 1.75354 2.69613 2.30582 2.69613L10.3058 2.69613L10.3058 10.6961C10.3058 11.2484 10.7535 11.6961 11.3058 11.6961C11.8581 11.6961 12.3058 11.2484 12.3058 10.6961L12.3058 1.69613ZM1.40633 13.0098L12.0129 2.40324L10.5987 0.989026L-0.00788796 11.5956L1.40633 13.0098Z"
+                                    fill="#68A3FF"
+                                />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <picture>
+                    <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="/assets/svgs/service3.svg"
+                        alt="appliance"
+                        width="48"
+                        height="48"
+                    />
+                </picture>
+                <h2>Unlimited edits</h2>
+                <p>
+                    Need to make changes to your website? No problem. We offer
+                    unlimited edits to ensure your content stays fresh and
+                    up-to-date.
+                </p>
+                <div class="card-btn">
+                    <a href="/contact">
+                        READ MORE
+                        <span class="cs-icon">
+                            <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 13 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.3058 1.69613C12.3058 1.14385 11.8581 0.696134 11.3058 0.696133L2.30582 0.696133C1.75354 0.696133 1.30582 1.14385 1.30582 1.69613C1.30582 2.24842 1.75354 2.69613 2.30582 2.69613L10.3058 2.69613L10.3058 10.6961C10.3058 11.2484 10.7535 11.6961 11.3058 11.6961C11.8581 11.6961 12.3058 11.2484 12.3058 10.6961L12.3058 1.69613ZM1.40633 13.0098L12.0129 2.40324L10.5987 0.989026L-0.00788796 11.5956L1.40633 13.0098Z"
+                                    fill="#68A3FF"
+                                />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="services">
+            <div class="card">
+                <picture>
+                    <!-- <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="./assets/svgs/service1.svg"
+                        alt="appliance"
+                        width="48"
+                        height="48"
+                    /> -->
+                    <svg
+                        width="96"
+                        height="96"
+                        viewBox="0 0 96 96"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect width="96" height="96" rx="48" fill="#236AD9" />
+                        <path
+                            d="M64.2806 40.8749C64.2806 45.4899 64.2806 50.0399 64.2806 54.6224C51.1156 54.6224 37.9756 54.6224 24.7843 54.6224C24.7756 54.4512 24.7618 54.2862 24.7606 54.1224C24.7593 46.8062 24.7593 39.4899 24.7606 32.1724C24.7606 30.3762 25.7718 29.3624 27.5768 29.3624C38.8843 29.3599 50.1931 29.3637 61.5006 29.3574C62.4906 29.3574 63.2943 29.6774 63.8693 30.5112C64.0331 30.7487 64.0431 30.9187 63.8431 31.1599C61.0818 34.4824 58.3318 37.8137 55.5843 41.1474C55.4243 41.3412 55.2831 41.4449 55.0006 41.4087C53.3618 41.1974 52.0918 41.8637 51.0818 43.1174C50.1943 44.2199 49.7681 45.5049 49.5531 46.8824C49.3593 48.1274 48.9231 49.2874 48.2781 50.3724C47.8118 51.1562 48.1056 51.6687 49.0181 51.6899C50.8968 51.7324 52.7593 51.6287 54.5631 51.0362C55.6593 50.6762 56.6531 50.1412 57.4556 49.2924C58.4368 48.2549 58.8706 47.0062 58.8981 45.5937C58.9018 45.4137 58.9556 45.1699 59.0781 45.0674C60.7356 43.6949 62.4081 42.3412 64.0793 40.9849C64.1243 40.9474 64.1818 40.9274 64.2806 40.8749ZM31.9893 31.9099C30.6656 31.9099 29.3406 31.9074 28.0168 31.9112C27.2831 31.9137 27.0568 32.1337 27.0556 32.8487C27.0518 34.9049 27.0518 36.9624 27.0556 39.0187C27.0568 39.7074 27.2893 39.9462 27.9856 39.9474C30.6493 39.9537 33.3131 39.9537 35.9768 39.9474C36.6543 39.9462 36.8993 39.6849 36.9006 39.0024C36.9031 36.9612 36.9031 34.9199 36.9006 32.8799C36.8993 32.1449 36.6668 31.9149 35.9143 31.9124C34.6056 31.9074 33.2981 31.9099 31.9893 31.9099ZM43.2993 39.9287C44.6256 39.9287 45.9506 39.9312 47.2768 39.9274C48.0118 39.9262 48.2381 39.7062 48.2393 38.9912C48.2418 36.9324 48.2418 34.8724 48.2393 32.8137C48.2381 32.1524 48.0018 31.9049 47.3418 31.9024C44.6593 31.8962 41.9768 31.8962 39.2943 31.9024C38.6393 31.9037 38.4018 32.1574 38.4006 32.8187C38.3981 34.8774 38.3981 36.9374 38.4006 38.9962C38.4018 39.6874 38.6343 39.9237 39.3243 39.9262C40.6481 39.9312 41.9731 39.9287 43.2993 39.9287ZM31.9318 43.1737C33.2881 43.1737 34.6431 43.1762 35.9993 43.1724C36.5606 43.1712 36.8993 42.8924 36.8968 42.4462C36.8956 42.0062 36.5593 41.7312 35.9893 41.7312C33.3093 41.7274 30.6281 41.7274 27.9481 41.7312C27.3593 41.7324 27.0581 41.9887 27.0606 42.4562C27.0631 42.9149 27.3793 43.1724 27.9568 43.1737C29.2831 43.1749 30.6068 43.1737 31.9318 43.1737ZM43.3156 43.1737C44.6556 43.1737 45.9956 43.1762 47.3368 43.1724C47.9156 43.1712 48.2318 42.9137 48.2356 42.4549C48.2381 41.9949 47.9281 41.7324 47.3443 41.7312C44.6643 41.7274 41.9831 41.7274 39.3031 41.7312C38.7218 41.7324 38.4043 41.9937 38.4031 42.4474C38.4018 42.9024 38.7256 43.1712 39.2956 43.1724C40.6343 43.1762 41.9756 43.1737 43.3156 43.1737ZM30.7031 46.0987C31.6381 46.0987 32.5718 46.1024 33.5068 46.0974C34.0818 46.0949 34.3943 45.8287 34.3843 45.3662C34.3743 44.9249 34.0656 44.6662 33.5193 44.6662C31.6506 44.6624 29.7818 44.6624 27.9118 44.6662C27.3693 44.6674 27.0631 44.9299 27.0606 45.3762C27.0568 45.8274 27.3556 46.0937 27.8993 46.0974C28.8343 46.1024 29.7681 46.0987 30.7031 46.0987ZM42.0993 44.6649C41.1343 44.6649 40.1681 44.6599 39.2031 44.6674C38.7081 44.6712 38.4006 44.9574 38.4018 45.3837C38.4031 45.8087 38.7081 46.0937 39.2068 46.0962C41.1068 46.1024 43.0068 46.1024 44.9068 46.0962C45.4281 46.0949 45.7156 45.8387 45.7268 45.4037C45.7381 44.9524 45.4318 44.6699 44.9031 44.6662C43.9681 44.6599 43.0343 44.6637 42.0993 44.6649Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M24.7593 56.125C37.9718 56.125 51.1118 56.125 64.338 56.125C64.298 56.8188 64.3256 57.4938 64.2068 58.1425C64.0131 59.1963 63.0055 59.9813 61.9243 60.025C61.768 60.0313 61.613 60.0288 61.4568 60.0288C50.1805 60.0288 38.9043 60.01 27.628 60.05C25.9718 60.0562 24.643 58.9587 24.7568 57.14C24.7768 56.8162 24.7593 56.49 24.7593 56.125ZM44.5368 58.8075C44.9505 58.8025 45.2668 58.475 45.2618 58.0588C45.2568 57.6475 44.9218 57.315 44.5193 57.32C44.118 57.325 43.788 57.6687 43.7918 58.0762C43.7968 58.4887 44.1268 58.8125 44.5368 58.8075Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M61.5146 41.2039C60.7634 40.4514 60.0396 39.7264 59.2871 38.9714C59.3034 38.9451 59.3459 38.8664 59.4021 38.7989C61.7034 36.0126 64.0021 33.2251 66.3084 30.4426C67.0709 29.5226 68.1684 29.1676 69.2371 29.5264C70.3471 29.8989 70.9784 30.6989 71.1059 31.8614C71.1984 32.7001 70.9496 33.4789 70.3059 34.0126C67.3821 36.4376 64.4284 38.8264 61.5146 41.2039Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M50.1855 50.2256C50.5418 48.7844 50.8755 47.3831 51.2368 45.9894C51.4755 45.0681 51.9018 44.2244 52.6293 43.6044C53.018 43.2731 53.5093 43.0094 53.998 42.8631C54.613 42.6781 55.208 42.7831 55.6793 43.3406C56.1105 43.8506 56.6043 44.3106 57.0905 44.7706C57.323 44.9906 57.423 45.2244 57.4268 45.5444C57.4455 47.1944 56.683 48.3806 55.2655 49.1456C53.6618 50.0094 51.9043 50.1944 50.1855 50.2256Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M44.5309 66.7199C41.6634 66.7199 38.7959 66.7199 35.9284 66.7187C35.7421 66.7187 35.5521 66.7237 35.3696 66.6937C34.9609 66.6274 34.7396 66.3699 34.7196 65.9599C34.7009 65.5674 34.9809 65.2474 35.3871 65.1862C35.5246 65.1649 35.6671 65.1737 35.8071 65.1737C41.6196 65.1737 47.4321 65.1724 53.2446 65.1749C53.4146 65.1749 53.5934 65.1637 53.7546 65.2074C54.1471 65.3149 54.3596 65.5862 54.3309 66.0012C54.3046 66.3949 54.0746 66.6287 53.6909 66.6937C53.5084 66.7249 53.3184 66.7199 53.1321 66.7199C50.2659 66.7212 47.3984 66.7199 44.5309 66.7199Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M49.1766 63.6994C46.0503 63.6994 43.0016 63.6994 39.8828 63.6994C40.1828 62.9869 40.4541 62.3144 40.7541 61.6569C40.7941 61.5694 40.9778 61.5031 41.0953 61.5031C43.3878 61.4944 45.6803 61.4919 47.9728 61.5069C48.1003 61.5081 48.2891 61.6369 48.3441 61.7544C48.6316 62.3731 48.8853 63.0081 49.1766 63.6994Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M60.2584 42.2128C59.6184 42.7341 58.9446 43.2803 58.2971 43.8066C57.7371 43.2528 57.1996 42.7203 56.6309 42.1591C57.1671 41.5078 57.7196 40.8378 58.2496 40.1953C58.9234 40.8728 59.5796 41.5303 60.2584 42.2128Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M28.5273 33.3711C30.8386 33.3711 33.1098 33.3711 35.4098 33.3711C35.4098 35.0698 35.4098 36.7473 35.4098 38.4586C33.1298 38.4586 30.8461 38.4586 28.5273 38.4586C28.5273 36.7823 28.5273 35.0936 28.5273 33.3711Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M46.7773 33.3652C46.7773 35.084 46.7773 36.7602 46.7773 38.4652C44.4686 38.4652 42.1848 38.4652 39.8711 38.4652C39.8711 36.7652 39.8711 35.074 39.8711 33.3652C42.1761 33.3652 44.4498 33.3652 46.7773 33.3652Z"
+                            fill="white"
+                        />
+                    </svg>
+                </picture>
+                <h2>Custom website design</h2>
+                <p>
+                    Our custom-coded websites are tailored to meet the specific
+                    needs of your business. We don’t rely on WordPress or other
+                    content...
+                </p>
+                <div class="card-btn">
+                    <a href="/contact">
+                        READ MORE
+                        <span class="cs-icon">
+                            <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 13 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.3058 1.69613C12.3058 1.14385 11.8581 0.696134 11.3058 0.696133L2.30582 0.696133C1.75354 0.696133 1.30582 1.14385 1.30582 1.69613C1.30582 2.24842 1.75354 2.69613 2.30582 2.69613L10.3058 2.69613L10.3058 10.6961C10.3058 11.2484 10.7535 11.6961 11.3058 11.6961C11.8581 11.6961 12.3058 11.2484 12.3058 10.6961L12.3058 1.69613ZM1.40633 13.0098L12.0129 2.40324L10.5987 0.989026L-0.00788796 11.5956L1.40633 13.0098Z"
+                                    fill="#68A3FF"
+                                />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <picture>
+                    <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="./assets/svgs/service2.svg"
+                        alt="appliance"
+                        width="48"
+                        height="48"
+                    />
+                </picture>
+                <h2>High-performance hosting</h2>
+                <p>
+                    We provide top-tier hosting solutions, ensuring your website
+                    is always up and running smoothly. With our hosting, you can
+                    expect fast load...
+                </p>
+                <div class="card-btn">
+                    <a href="/contact">
+                        READ MORE
+                        <span class="cs-icon">
+                            <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 13 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.3058 1.69613C12.3058 1.14385 11.8581 0.696134 11.3058 0.696133L2.30582 0.696133C1.75354 0.696133 1.30582 1.14385 1.30582 1.69613C1.30582 2.24842 1.75354 2.69613 2.30582 2.69613L10.3058 2.69613L10.3058 10.6961C10.3058 11.2484 10.7535 11.6961 11.3058 11.6961C11.8581 11.6961 12.3058 11.2484 12.3058 10.6961L12.3058 1.69613ZM1.40633 13.0098L12.0129 2.40324L10.5987 0.989026L-0.00788796 11.5956L1.40633 13.0098Z"
+                                    fill="#68A3FF"
+                                />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <picture>
+                    <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="/assets/svgs/service3.svg"
+                        alt="appliance"
+                        width="48"
+                        height="48"
+                    />
+                </picture>
+                <h2>Unlimited edits</h2>
+                <p>
+                    Need to make changes to your website? No problem. We offer
+                    unlimited edits to ensure your content stays fresh and
+                    up-to-date.
+                </p>
+                <div class="card-btn">
+                    <a href="/contact">
+                        READ MORE
+                        <span class="cs-icon">
+                            <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 13 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.3058 1.69613C12.3058 1.14385 11.8581 0.696134 11.3058 0.696133L2.30582 0.696133C1.75354 0.696133 1.30582 1.14385 1.30582 1.69613C1.30582 2.24842 1.75354 2.69613 2.30582 2.69613L10.3058 2.69613L10.3058 10.6961C10.3058 11.2484 10.7535 11.6961 11.3058 11.6961C11.8581 11.6961 12.3058 11.2484 12.3058 10.6961L12.3058 1.69613ZM1.40633 13.0098L12.0129 2.40324L10.5987 0.989026L-0.00788796 11.5956L1.40633 13.0098Z"
+                                    fill="#68A3FF"
+                                />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <p class="cs-title">Our Services</p> -->
+
+    <!-- ============================================ -->
+    <!--                 Side By Side                 -->
+    <!-- ============================================ -->
+
+    <section id="sbs">
+        <div class="cs-container">
+            <!-- Left Image Section -->
+            <div class="cs-left">
+                <picture class="cs-picture cs-picture1">
+                    <!-- <source
+                        media="(max-width: 600px)"
+                        srcset="/assets/images/Img.png"
+                    />
+                    <source
+                        media="(min-width: 601px)"
+                        srcset="/assets/images/Img.png"
+                    /> -->
+                    <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="./assets/images/Img.png"
+                        alt="cabinets"
+                        loading="lazy"
+                    />
+                </picture>
+                <!-- <picture class="cs-picture cs-picture2">
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="/assets/images/construction-m.jpg"
+                    />
+                    <source
+                        media="(min-width: 601px)"
+                        srcset="/assets/images/construction.jpg"
+                    />
+                    <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="/assets/images/construction.jpg"
+                        alt="house"
+                        loading="lazy"
+                        width="400"
+                        height="563"
+                    />
+                </picture> -->
+            </div>
+            <!-- Right Content Section-->
+            <div class="cs-right">
+                <span class="cs-topper">Your partner </span>
+                <h2 class="cs-title">in digital transformation!</h2>
+                <p class="cs-text">
+                    In consequat tincidunt turpis sit amet imperdiet. Praesent
+                    Class officelan nonatoureanor mauris laoreet, iaculis libero
+                    quis. Curabitur et tempus eri consequat tincidunt turpis sit
+                    amet imperdiet. Praesent nonatourean olei aptent taciti
+                    sociosqu ad litora torquent per.
+                </p>
+                <p class="cs-text">
+                    Welcome to Websolutely! We're your go-to team for building
+                    custom-coded websites that are fast, secure, and tailored to
+                    the unique needs of your business. Based in West LA, we
+                    specialize in serving small businesses throughout Los
+                    Angeles, helping them thrive in the digital world. The
+                    Websolutely team is made up of expert web developers,
+                    designers, and copy editors dedicated to creating
+                    custom-coded websites that are not only visually stunning
+                    but also perform exceptionally well. With a 100% rating on
+                    Google PageSpeed Insights, we ensure your website loads
+                    quickly and efficiently, helping you achieve higher rankings
+                    on Google and providing a seamless user experience.
+                </p>
+                <!-- <div class="cs-flex-group">
+                    <p class="cs-flex-p">
+                        In consequat tincidunt turpis sit amet imperdiet.
+                        Praesent Classei consequat tincidunt turpis sit amet
+                        imperdiet for mind.
+                    </p>
+                    <span class="cs-name">Justin Time</span>
+                    <span class="cs-job">CEO-Founder</span>
+                    <img
+                        class="cs-quote-icon"
+                        loading="lazy"
+                        decoding="async"
+                        src="https://csimg.nyc3.digitaloceanspaces.com/SideBySide/quote-white.svg"
+                        alt="gavel"
+                        width="136"
+                        height="77"
+                    />
+                </div> -->
+                <span class="cs-button-custom">
+                    <a href="/contact">
+                        MORE ABOUT US
+                        <span class="cs-icon">
+                            <svg
+                                width="13"
+                                height="13"
+                                viewBox="0 0 13 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.3058 1.69613C12.3058 1.14385 11.8581 0.696134 11.3058 0.696133L2.30582 0.696133C1.75354 0.696133 1.30582 1.14385 1.30582 1.69613C1.30582 2.24842 1.75354 2.69613 2.30582 2.69613L10.3058 2.69613L10.3058 10.6961C10.3058 11.2484 10.7535 11.6961 11.3058 11.6961C11.8581 11.6961 12.3058 11.2484 12.3058 10.6961L12.3058 1.69613ZM1.40633 13.0098L12.0129 2.40324L10.5987 0.989026L-0.00788796 11.5956L1.40633 13.0098Z"
+                                    fill="white"
+                                />
+                            </svg>
+                        </span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--            Extra Content To Rank             -->
+    <!-- ============================================ -->
+
+    <!-----
+
+    <section id="sbs-r">
+        <div class="cs-container">
+          
+            <div class="cs-left">
+                <picture class="cs-picture cs-picture1">
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="/assets/images/construction-m.jpg"
+                    />
+                    <source
+                        media="(min-width: 601px)"
+                        srcset="/assets/images/construction.jpg"
+                    />
+                    <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="/assets/images/construction.jpg"
+                        alt="house"
+                        loading="lazy"
+                        width="400"
+                        height="560"
+                    />
+                </picture>
+                <picture class="cs-picture cs-picture2">
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="/assets/images/cabinets2-m.jpg"
+                    />
+                    <source
+                        media="(min-width: 601px)"
+                        srcset="/assets/images/cabinets2.jpg"
+                    />
+                    <img
+                        aria-hidden="true"
+                        decoding="async"
+                        src="/assets/images/cabinets2.jpg"
+                        alt="cabinets"
+                        loading="lazy"
+                        width="400"
+                        height="560"
+                    />
+                </picture>
+            </div>
+           
+            <div class="cs-right">
+                <span class="cs-topper">SEO Ranking</span>
+                <h2 class="cs-title">Talk about a main service keyword</h2>
+                <p class="cs-text">
+                    In consequat tincidunt turpis sit amet imperdiet. Praesent
+                    Class officelan nonatoureanor mauris laoreet, iaculis libero
+                    quis. Curabitur et tempus eri consequat tincidunt turpis sit
+                    amet imperdiet. Praesent nonatourean olei aptent taciti
+                    sociosqu ad litora torquent per.
+                </p>
+                <p class="cs-text">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Non tenetur, iure nihil ipsam qui atque commodi id
+                    voluptatem nesciunt, quis animi fuga cum doloribus! Eaque
+                    laboriosam, unde consectetur iure asperiores ullam.
+                    Consequuntur debitis a voluptatibus vitae optio autem
+                    explicabo quia neque est quas, in placeat. Lorem ipsum dolor
+                    sit amet consectetur adipisicing elit. Doloribus modi
+                    laudantium voluptatibus rem libero error minus quia eligendi
+                    sapiente eos.
+                </p>
+                <a href="/blog" class="cs-button-solid">Read our Blog</a>
+            </div>
+        </div>
+    </section>
+
+--->
+
+  
+
+    <!-- ============================================ -->
+    <!--                   OUR PORTFOLIO                    -->
+    <!-- ============================================ -->
+
+    <section id="portfolio">
+        <p>OUR PORTFOLIO</p>
+        <h1>Our Creative <span> Showcase</span></h1>
+        <p class="cs-portfolio">
+            Welcome to our portfolio page! Here, you'll find some of the
+            standout projects created by Steve Keri, the CEO & founder of
+            Websolutely.
+        </p>
+
+        <div class="cs-portfolio-container">
+            <div class="portfolio-images">
+                <img src="/assets/images/portfolio.png" alt="new hallway" />
+            </div>
+            <div class="cs-portfolio-content">
+                <h1 class="cs-portfolio-title">Bambi <span>Salon</span></h1>
+                <p class="cs-portfolio-text">
+                    Bambi Salon is a sleek, stylish demo website for a trendy
+                    salon. It stands out with vibrant images that capture the
+                    salon’s atmosphere and easy-to-use booking integration. This
+                    site reflects the modern, chic aesthetic of the salon,
+                    giving potential clients a glimpse into the experience they
+                    can expect.
+                </p>
+                <div class="portfolio-features">
+                    <p class="cs-features">Features:</p>
+                    <ul>
+                        <li class="cs-drop-li">
+                            <span class="cs-icon"
+                                ><svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 18 18"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M0 6.59989C0.129199 6.316 0.352881 6.20262 0.659619 6.21141C0.986572 6.22108 1.3144 6.21141 1.6418 6.21405C2.04038 6.21756 2.24604 6.42498 2.24604 6.82049C2.24648 9.41107 2.24648 12.0016 2.24604 14.5922C2.24604 14.9877 2.04038 15.1951 1.6418 15.1987C1.3144 15.2013 0.986572 15.1921 0.659619 15.2013C0.352881 15.2101 0.129199 15.0972 0 14.8133C0 12.0759 0 9.33768 0 6.59989Z"
+                                        fill="white"
+                                    />
+                                    <path
+                                        d="M10.899 12.9761C11.2316 13.0635 11.4865 13.2428 11.6496 13.539C12.0112 14.1964 11.6359 15.0151 10.9012 15.1694C10.8045 15.1896 10.7039 15.198 10.6054 15.1984C8.76367 15.2002 6.92148 15.201 5.07974 15.1988C4.44648 15.198 3.90508 14.9686 3.46562 14.512C3.41245 14.4566 3.37466 14.3617 3.37422 14.2848C3.36938 11.8867 3.37114 9.48902 3.36719 7.09092C3.36719 6.97535 3.4085 6.9125 3.49771 6.8501C5.26431 5.6126 7.03311 4.37906 8.79092 3.12969C9.34243 2.7377 9.83682 2.80538 10.1871 3.05367C10.779 3.47334 10.8476 4.30743 10.3013 4.78291C9.79024 5.22764 9.24707 5.63545 8.71797 6.05997C8.66875 6.09952 8.62085 6.13995 8.53252 6.21333C8.64458 6.21333 8.71094 6.21333 8.7773 6.21333C11.4377 6.21333 14.0986 6.21289 16.7591 6.21377C17.3348 6.21377 17.7562 6.50557 17.9122 7.00479C18.1108 7.64024 17.7188 8.30425 17.0645 8.43213C16.9507 8.45455 16.832 8.45894 16.7156 8.45894C15.2188 8.4607 13.7216 8.46026 12.2248 8.46026C12.1615 8.46026 12.0987 8.46026 12.0354 8.46026C12.3153 8.55782 12.5531 8.70723 12.717 8.95332C12.8783 9.19502 12.9464 9.46309 12.8976 9.75445C12.8414 10.0898 12.6691 10.349 12.3834 10.534C12.1044 10.7151 11.7889 10.7147 11.4413 10.705C12.1343 11.01 12.4379 11.4354 12.3312 11.9834C12.2916 12.1864 12.1958 12.4017 12.0626 12.5573C11.9339 12.708 11.7361 12.8253 11.5458 12.8917C11.3499 12.9603 11.1257 12.9502 10.899 12.9761Z"
+                                        fill="white"
+                                    />
+                                </svg>
+                            </span>
+                            High-quality imagery showcasing the salon’s interior
+                            and services
+                        </li>
+                        <li class="cs-drop-li">
+                            <span class="cs-icon"
+                                ><svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 18 18"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M0 6.59989C0.129199 6.316 0.352881 6.20262 0.659619 6.21141C0.986572 6.22108 1.3144 6.21141 1.6418 6.21405C2.04038 6.21756 2.24604 6.42498 2.24604 6.82049C2.24648 9.41107 2.24648 12.0016 2.24604 14.5922C2.24604 14.9877 2.04038 15.1951 1.6418 15.1987C1.3144 15.2013 0.986572 15.1921 0.659619 15.2013C0.352881 15.2101 0.129199 15.0972 0 14.8133C0 12.0759 0 9.33768 0 6.59989Z"
+                                        fill="white"
+                                    />
+                                    <path
+                                        d="M10.899 12.9761C11.2316 13.0635 11.4865 13.2428 11.6496 13.539C12.0112 14.1964 11.6359 15.0151 10.9012 15.1694C10.8045 15.1896 10.7039 15.198 10.6054 15.1984C8.76367 15.2002 6.92148 15.201 5.07974 15.1988C4.44648 15.198 3.90508 14.9686 3.46562 14.512C3.41245 14.4566 3.37466 14.3617 3.37422 14.2848C3.36938 11.8867 3.37114 9.48902 3.36719 7.09092C3.36719 6.97535 3.4085 6.9125 3.49771 6.8501C5.26431 5.6126 7.03311 4.37906 8.79092 3.12969C9.34243 2.7377 9.83682 2.80538 10.1871 3.05367C10.779 3.47334 10.8476 4.30743 10.3013 4.78291C9.79024 5.22764 9.24707 5.63545 8.71797 6.05997C8.66875 6.09952 8.62085 6.13995 8.53252 6.21333C8.64458 6.21333 8.71094 6.21333 8.7773 6.21333C11.4377 6.21333 14.0986 6.21289 16.7591 6.21377C17.3348 6.21377 17.7562 6.50557 17.9122 7.00479C18.1108 7.64024 17.7188 8.30425 17.0645 8.43213C16.9507 8.45455 16.832 8.45894 16.7156 8.45894C15.2188 8.4607 13.7216 8.46026 12.2248 8.46026C12.1615 8.46026 12.0987 8.46026 12.0354 8.46026C12.3153 8.55782 12.5531 8.70723 12.717 8.95332C12.8783 9.19502 12.9464 9.46309 12.8976 9.75445C12.8414 10.0898 12.6691 10.349 12.3834 10.534C12.1044 10.7151 11.7889 10.7147 11.4413 10.705C12.1343 11.01 12.4379 11.4354 12.3312 11.9834C12.2916 12.1864 12.1958 12.4017 12.0626 12.5573C11.9339 12.708 11.7361 12.8253 11.5458 12.8917C11.3499 12.9603 11.1257 12.9502 10.899 12.9761Z"
+                                        fill="white"
+                                    />
+                                </svg> </span
+                            >Responsive design for seamless viewing on any
+                            device
+                        </li>
+                        <li class="cs-drop-li">
+                            <span class="cs-icon"
+                                ><svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 18 18"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M0 6.59989C0.129199 6.316 0.352881 6.20262 0.659619 6.21141C0.986572 6.22108 1.3144 6.21141 1.6418 6.21405C2.04038 6.21756 2.24604 6.42498 2.24604 6.82049C2.24648 9.41107 2.24648 12.0016 2.24604 14.5922C2.24604 14.9877 2.04038 15.1951 1.6418 15.1987C1.3144 15.2013 0.986572 15.1921 0.659619 15.2013C0.352881 15.2101 0.129199 15.0972 0 14.8133C0 12.0759 0 9.33768 0 6.59989Z"
+                                        fill="white"
+                                    />
+                                    <path
+                                        d="M10.899 12.9761C11.2316 13.0635 11.4865 13.2428 11.6496 13.539C12.0112 14.1964 11.6359 15.0151 10.9012 15.1694C10.8045 15.1896 10.7039 15.198 10.6054 15.1984C8.76367 15.2002 6.92148 15.201 5.07974 15.1988C4.44648 15.198 3.90508 14.9686 3.46562 14.512C3.41245 14.4566 3.37466 14.3617 3.37422 14.2848C3.36938 11.8867 3.37114 9.48902 3.36719 7.09092C3.36719 6.97535 3.4085 6.9125 3.49771 6.8501C5.26431 5.6126 7.03311 4.37906 8.79092 3.12969C9.34243 2.7377 9.83682 2.80538 10.1871 3.05367C10.779 3.47334 10.8476 4.30743 10.3013 4.78291C9.79024 5.22764 9.24707 5.63545 8.71797 6.05997C8.66875 6.09952 8.62085 6.13995 8.53252 6.21333C8.64458 6.21333 8.71094 6.21333 8.7773 6.21333C11.4377 6.21333 14.0986 6.21289 16.7591 6.21377C17.3348 6.21377 17.7562 6.50557 17.9122 7.00479C18.1108 7.64024 17.7188 8.30425 17.0645 8.43213C16.9507 8.45455 16.832 8.45894 16.7156 8.45894C15.2188 8.4607 13.7216 8.46026 12.2248 8.46026C12.1615 8.46026 12.0987 8.46026 12.0354 8.46026C12.3153 8.55782 12.5531 8.70723 12.717 8.95332C12.8783 9.19502 12.9464 9.46309 12.8976 9.75445C12.8414 10.0898 12.6691 10.349 12.3834 10.534C12.1044 10.7151 11.7889 10.7147 11.4413 10.705C12.1343 11.01 12.4379 11.4354 12.3312 11.9834C12.2916 12.1864 12.1958 12.4017 12.0626 12.5573C11.9339 12.708 11.7361 12.8253 11.5458 12.8917C11.3499 12.9603 11.1257 12.9502 10.899 12.9761Z"
+                                        fill="white"
+                                    />
+                                </svg> </span
+                            >Stylish and modern layout to attract the target
+                            clientele
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                   Gallery                    -->
+    <!-- ============================================ -->
+
+    <section id="why-choose-us">
+        <p>WHY CHOOSE US</p>
+        <h1>Why Choose <span>Websolutely?</span></h1>
+        <p class="cs-portfolio">
+            Let Websolutely be your trusted partner in creating a website that
+            truly represents your business and helps you achieve your goals.
+            Contact us today to get started!
+        </p>
+
+        <div class="why-choose-container">
+            <div class="why-choose-images">
+                <img
+                    src="/assets/images/why-choose-one.png"
+                    alt="new hallway"
+                />
+            </div>
+
+            <div class="why-choose-content">
+                <div class="why-choose-card">
+                    <div class="why-choose-icon">
+                        <img src="/assets/images/why-1.png" alt="" />
+                    </div>
+                    <div class="why-choose-text">
+                        <h1>Authenticity</h1>
+                        <p>
+                            We’re real people who understand the challenges
+                            small businesses face. We’re not about flashy sales
+                            tactics or gimmicks—just solid, reliable web
+                            solutions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="why-choose-card">
+                    <div class="why-choose-icon">
+                        <img src="/assets/images/why-2.png" alt="" />
+                    </div>
+                    <div class="why-choose-text">
+                        <h1>Expertise</h1>
+                        <p>
+                            Our team consists of talented designers and
+                            developers who are passionate about their craft and
+                            stay up-to-date with the latest industry trends.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="why-choose-card">
+                    <div class="why-choose-icon">
+                        <img src="/assets/images/why-3.png" alt="" />
+                    </div>
+                    <div class="why-choose-text">
+                        <h1>High Quality</h1>
+                        <p>
+                            We take initiative and pay attention to every
+                            detail, ensuring your website is not only beautiful
+                            but also functional and user-friendly.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="why-choose-card">
+                    <div class="why-choose-icon">
+                        <img src="/assets/images/why-4.png" alt="" />
+                    </div>
+                    <div class="why-choose-text">
+                        <h1>Authenticity</h1>
+                        <p>
+                            We’re real people who understand the challenges
+                            small businesses face. We’re not about flashy sales
+                            tactics or gimmicks—just solid, reliable web
+                            solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                   Pricing                    -->
+    <!-- ============================================ -->
+
+   
+
+        <!-- ============================================ -->
+    <!--                   Pricing                    -->
+    <!-- ============================================ -->
+
+
+    <section class="blog-section">
+        <header class="blog-section__header">
+          <p class="blog-section__subtitle">OUR BLOG</p>
+          <h1 class="blog-section__title">
+            Discover the latest <span>trends</span>
+          </h1>
+          <p class="blog-section__description">
+            Stay updated with our latest insights, tips, and trends in web design, SEO, and digital marketing. Our blog is your go-to resource for enhancing your online presence.
+          </p>
+        </header>
+      
+        <div class="blog-section__cards">
+          <div class="blog-card">
+            <div class="blog-card__image">
+              <img src="/assets/images/trends-1.png" alt="Blog Post Image" />
+            </div>
+            <div class="blog-card__content">
+              <div class="blog-card__meta">
+               <div>
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.64115 7.01289C9.37646 6.64328 9.96558 6.03642 10.3132 5.29045C10.6608 4.54449 10.7466 3.70307 10.5567 2.90231C10.3667 2.10154 9.91222 1.38827 9.26662 0.877883C8.62102 0.367496 7.8221 0.0898438 6.99912 0.0898438C6.17614 0.0898438 5.37723 0.367496 4.73163 0.877883C4.08603 1.38827 3.6315 2.10154 3.44157 2.90231C3.25164 3.70307 3.33743 4.54449 3.68505 5.29045C4.03266 6.03642 4.62178 6.64328 5.3571 7.01289C3.52997 7.38583 1.88673 8.3759 0.703145 9.81695C0.488994 10.0792 0.375524 10.4092 0.383176 10.7477C0.390828 11.0862 0.5191 11.4108 0.744883 11.6631C1.53568 12.5368 2.50079 13.2352 3.57801 13.7132C4.65522 14.1911 5.82063 14.4381 6.99912 14.4381C8.17761 14.4381 9.34303 14.1911 10.4202 13.7132C11.4975 13.2352 12.4626 12.5368 13.2534 11.6631C13.4791 11.4108 13.6074 11.0862 13.6151 10.7477C13.6227 10.4092 13.5093 10.0792 13.2951 9.81695C12.1115 8.3759 10.4683 7.38583 8.64115 7.01289Z" fill="#236AD9"/>
+                </svg>
+
+                <span class="blog-card__author">Charles Robert</span>
+                    
+               </div>
+               <div class="blog-card__calender">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.756204 6.09511C0.70467 5.09029 0.975404 4.09776 1.52326 3.26557L1.66597 3.06094L1.67776 3.04973L1.77684 2.93559L1.88063 2.81904L1.89243 2.80703C2.09058 2.60758 2.30996 2.43216 2.54664 2.28238L2.61347 2.24083L2.68031 2.20228L2.83757 2.11337C2.90126 2.08373 2.97046 2.04849 3.03415 2.01885C3.08054 2.00123 3.12694 1.978 3.17333 1.96038C3.26061 1.92433 3.35339 1.88909 3.44618 1.85945C3.47763 1.84423 3.51066 1.83222 3.54447 1.82421L3.58202 1.80939L3.6231 1.79457C4.04614 1.67042 4.48097 1.58471 4.92052 1.54546L4.875 1.5507V0.655526C4.875 0.296601 5.16989 0.00638857 5.53459 0.00638857C5.89929 0.00638857 6.195 0.296601 6.195 0.655526V3.48489C6.195 3.84382 5.89929 4.13484 5.53459 4.13484C5.16989 4.13484 4.875 3.84382 4.875 3.48489L4.87504 2.83076C4.44206 2.87333 4.0169 2.9791 3.61366 3.14665C2.5731 3.60626 2.07683 4.48153 2.0298 5.86862L2.0261 6.0919V6.44033H15.9745V6.08309C16.0012 5.44069 15.8699 4.8015 15.5916 4.22399C15.3242 3.72977 14.8965 3.3461 14.3799 3.13784C14.0509 2.99879 13.7063 2.90177 13.3541 2.84884L13.125 2.8215L13.125 3.48163C13.125 3.83901 12.8297 4.12847 12.465 4.12847C12.1004 4.12847 11.805 3.83901 11.805 3.48163L11.805 2.7729L6.20142 2.77339V1.48619L11.805 1.4859L11.805 0.651719C11.8017 0.294341 12.0954 0.00245597 12.4601 1.50704e-05C12.8247 -0.00239531 13.1226 0.284639 13.125 0.642016L13.1256 1.54572C13.4458 1.57675 13.7635 1.6316 14.0761 1.70997L14.3869 1.79618C14.4121 1.80098 14.431 1.80739 14.4656 1.8194C14.5002 1.83142 14.5293 1.84343 14.5639 1.85465C14.6559 1.88428 14.7416 1.91953 14.8304 1.95557C14.8815 1.97319 14.9287 1.99642 14.9688 2.01405C15.038 2.04368 15.1088 2.07893 15.1654 2.10856C15.2236 2.1382 15.2794 2.17104 15.3281 2.19747C15.3769 2.22391 15.4146 2.25354 15.4555 2.27757C15.6336 2.39051 15.8029 2.51787 15.961 2.65796L16.1152 2.80222L16.1223 2.81424L16.2301 2.92658L16.3315 3.04492L16.337 3.05614C16.93 3.86132 17.249 4.83918 17.25 5.84103L17.2436 6.0919V6.44033H17.25V13.4192C17.25 16.4624 15.519 18 12.0883 18H5.90379C2.48104 18 0.75 16.4624 0.75 13.4192V6.44033H0.756204V6.09511ZM12.7729 12.8217C12.348 12.8217 12.0097 13.1642 12.0097 13.5865C12.0175 14.0087 12.3559 14.3513 12.7729 14.3513C13.1899 14.3513 13.5283 14.0087 13.5283 13.5865C13.5283 13.1642 13.1899 12.8217 12.7729 12.8217ZM9.00393 12.8137C8.57904 12.8217 8.2407 13.1642 8.2407 13.5865C8.2407 14.0087 8.58691 14.3513 9.00393 14.3513C9.42096 14.3513 9.7593 14.0087 9.7593 13.5785C9.75143 13.1642 9.42096 12.8217 9.00393 12.8137ZM5.22711 12.8137C4.80222 12.8137 4.46388 13.1642 4.47175 13.5865C4.47175 14.0087 4.81009 14.3513 5.22711 14.3513C5.64413 14.3513 5.98248 14.0007 5.98248 13.5785C5.98248 13.1563 5.64413 12.8137 5.22711 12.8137ZM12.7729 9.55531C12.348 9.55531 12.0175 9.89788 12.0175 10.3201C12.0175 10.7423 12.3559 11.0849 12.7729 11.0849C13.1899 11.0849 13.5283 10.7423 13.5283 10.3201C13.5283 9.89788 13.1899 9.55531 12.7729 9.55531ZM9.00393 9.54734C8.57904 9.55531 8.2407 9.89788 8.2407 10.3201C8.2407 10.7423 8.58691 11.0849 9.00393 11.0849C9.42096 11.0849 9.7593 10.7423 9.7593 10.3121C9.7593 9.89788 9.42096 9.55531 9.00393 9.54734ZM5.23498 9.54734C4.81009 9.54734 4.47175 9.89788 4.47175 10.3201C4.47175 10.7423 4.81009 11.0849 5.22711 11.0849C5.652 11.0849 5.99034 10.7344 5.98248 10.3121C5.98248 9.88991 5.64413 9.54734 5.23498 9.54734Z" fill="#236AD9"/>
+                </svg>
+                    
+
+                <span class="blog-card__author">Charles Robert</span>
+                    
+               </div>
+              </div>
+              <h2 class="blog-card__title">10 reasons why every business should consider having a website</h2>
+              <p class="blog-card__excerpt">
+                At Websolutely, we specialize in creating affordable, high-performance, custom-coded...
+              </p>
+              <a href="#" class="blog-card__link">
+                Read More <span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.8058 1.69613C12.8058 1.14385 12.3581 0.696134 11.8058 0.696133L2.80582 0.696133C2.25354 0.696133 1.80582 1.14385 1.80582 1.69613C1.80582 2.24842 2.25354 2.69613 2.80582 2.69613L10.8058 2.69613L10.8058 10.6961C10.8058 11.2484 11.2535 11.6961 11.8058 11.6961C12.3581 11.6961 12.8058 11.2484 12.8058 10.6961L12.8058 1.69613ZM1.90633 13.0098L12.5129 2.40324L11.0987 0.989026L0.492112 11.5956L1.90633 13.0098Z" fill="#236AD9"/>
+                    </svg></span>
+              </a>
+            </div>
+          </div>
+      
+          <!-- Repeat blog-card for other posts -->
+          <div class="blog-card">
+            <div class="blog-card__image">
+              <img src="/assets/images/discover.png" alt="Blog Post Image" />
+            </div>
+            <div class="blog-card__content">
+                <div class="blog-card__meta">
+                 <div>
+                  <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.64115 7.01289C9.37646 6.64328 9.96558 6.03642 10.3132 5.29045C10.6608 4.54449 10.7466 3.70307 10.5567 2.90231C10.3667 2.10154 9.91222 1.38827 9.26662 0.877883C8.62102 0.367496 7.8221 0.0898438 6.99912 0.0898438C6.17614 0.0898438 5.37723 0.367496 4.73163 0.877883C4.08603 1.38827 3.6315 2.10154 3.44157 2.90231C3.25164 3.70307 3.33743 4.54449 3.68505 5.29045C4.03266 6.03642 4.62178 6.64328 5.3571 7.01289C3.52997 7.38583 1.88673 8.3759 0.703145 9.81695C0.488994 10.0792 0.375524 10.4092 0.383176 10.7477C0.390828 11.0862 0.5191 11.4108 0.744883 11.6631C1.53568 12.5368 2.50079 13.2352 3.57801 13.7132C4.65522 14.1911 5.82063 14.4381 6.99912 14.4381C8.17761 14.4381 9.34303 14.1911 10.4202 13.7132C11.4975 13.2352 12.4626 12.5368 13.2534 11.6631C13.4791 11.4108 13.6074 11.0862 13.6151 10.7477C13.6227 10.4092 13.5093 10.0792 13.2951 9.81695C12.1115 8.3759 10.4683 7.38583 8.64115 7.01289Z" fill="#236AD9"/>
+                  </svg>
+  
+                  <span class="blog-card__author">Charles Robert</span>
+                      
+                 </div>
+                 <div class="blog-card__calender">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.756204 6.09511C0.70467 5.09029 0.975404 4.09776 1.52326 3.26557L1.66597 3.06094L1.67776 3.04973L1.77684 2.93559L1.88063 2.81904L1.89243 2.80703C2.09058 2.60758 2.30996 2.43216 2.54664 2.28238L2.61347 2.24083L2.68031 2.20228L2.83757 2.11337C2.90126 2.08373 2.97046 2.04849 3.03415 2.01885C3.08054 2.00123 3.12694 1.978 3.17333 1.96038C3.26061 1.92433 3.35339 1.88909 3.44618 1.85945C3.47763 1.84423 3.51066 1.83222 3.54447 1.82421L3.58202 1.80939L3.6231 1.79457C4.04614 1.67042 4.48097 1.58471 4.92052 1.54546L4.875 1.5507V0.655526C4.875 0.296601 5.16989 0.00638857 5.53459 0.00638857C5.89929 0.00638857 6.195 0.296601 6.195 0.655526V3.48489C6.195 3.84382 5.89929 4.13484 5.53459 4.13484C5.16989 4.13484 4.875 3.84382 4.875 3.48489L4.87504 2.83076C4.44206 2.87333 4.0169 2.9791 3.61366 3.14665C2.5731 3.60626 2.07683 4.48153 2.0298 5.86862L2.0261 6.0919V6.44033H15.9745V6.08309C16.0012 5.44069 15.8699 4.8015 15.5916 4.22399C15.3242 3.72977 14.8965 3.3461 14.3799 3.13784C14.0509 2.99879 13.7063 2.90177 13.3541 2.84884L13.125 2.8215L13.125 3.48163C13.125 3.83901 12.8297 4.12847 12.465 4.12847C12.1004 4.12847 11.805 3.83901 11.805 3.48163L11.805 2.7729L6.20142 2.77339V1.48619L11.805 1.4859L11.805 0.651719C11.8017 0.294341 12.0954 0.00245597 12.4601 1.50704e-05C12.8247 -0.00239531 13.1226 0.284639 13.125 0.642016L13.1256 1.54572C13.4458 1.57675 13.7635 1.6316 14.0761 1.70997L14.3869 1.79618C14.4121 1.80098 14.431 1.80739 14.4656 1.8194C14.5002 1.83142 14.5293 1.84343 14.5639 1.85465C14.6559 1.88428 14.7416 1.91953 14.8304 1.95557C14.8815 1.97319 14.9287 1.99642 14.9688 2.01405C15.038 2.04368 15.1088 2.07893 15.1654 2.10856C15.2236 2.1382 15.2794 2.17104 15.3281 2.19747C15.3769 2.22391 15.4146 2.25354 15.4555 2.27757C15.6336 2.39051 15.8029 2.51787 15.961 2.65796L16.1152 2.80222L16.1223 2.81424L16.2301 2.92658L16.3315 3.04492L16.337 3.05614C16.93 3.86132 17.249 4.83918 17.25 5.84103L17.2436 6.0919V6.44033H17.25V13.4192C17.25 16.4624 15.519 18 12.0883 18H5.90379C2.48104 18 0.75 16.4624 0.75 13.4192V6.44033H0.756204V6.09511ZM12.7729 12.8217C12.348 12.8217 12.0097 13.1642 12.0097 13.5865C12.0175 14.0087 12.3559 14.3513 12.7729 14.3513C13.1899 14.3513 13.5283 14.0087 13.5283 13.5865C13.5283 13.1642 13.1899 12.8217 12.7729 12.8217ZM9.00393 12.8137C8.57904 12.8217 8.2407 13.1642 8.2407 13.5865C8.2407 14.0087 8.58691 14.3513 9.00393 14.3513C9.42096 14.3513 9.7593 14.0087 9.7593 13.5785C9.75143 13.1642 9.42096 12.8217 9.00393 12.8137ZM5.22711 12.8137C4.80222 12.8137 4.46388 13.1642 4.47175 13.5865C4.47175 14.0087 4.81009 14.3513 5.22711 14.3513C5.64413 14.3513 5.98248 14.0007 5.98248 13.5785C5.98248 13.1563 5.64413 12.8137 5.22711 12.8137ZM12.7729 9.55531C12.348 9.55531 12.0175 9.89788 12.0175 10.3201C12.0175 10.7423 12.3559 11.0849 12.7729 11.0849C13.1899 11.0849 13.5283 10.7423 13.5283 10.3201C13.5283 9.89788 13.1899 9.55531 12.7729 9.55531ZM9.00393 9.54734C8.57904 9.55531 8.2407 9.89788 8.2407 10.3201C8.2407 10.7423 8.58691 11.0849 9.00393 11.0849C9.42096 11.0849 9.7593 10.7423 9.7593 10.3121C9.7593 9.89788 9.42096 9.55531 9.00393 9.54734ZM5.23498 9.54734C4.81009 9.54734 4.47175 9.89788 4.47175 10.3201C4.47175 10.7423 4.81009 11.0849 5.22711 11.0849C5.652 11.0849 5.99034 10.7344 5.98248 10.3121C5.98248 9.88991 5.64413 9.54734 5.23498 9.54734Z" fill="#236AD9"/>
+                  </svg>
+                      
+  
+                  <span class="blog-card__author">Charles Robert</span>
+                      
+                 </div>
+                </div>
+                <h2 class="blog-card__title">10 reasons why every business should consider having a website</h2>
+                <p class="blog-card__excerpt">
+                  At Websolutely, we specialize in creating affordable, high-performance, custom-coded...
+                </p>
+                <a href="#" class="blog-card__link">
+                  Read More <span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.8058 1.69613C12.8058 1.14385 12.3581 0.696134 11.8058 0.696133L2.80582 0.696133C2.25354 0.696133 1.80582 1.14385 1.80582 1.69613C1.80582 2.24842 2.25354 2.69613 2.80582 2.69613L10.8058 2.69613L10.8058 10.6961C10.8058 11.2484 11.2535 11.6961 11.8058 11.6961C12.3581 11.6961 12.8058 11.2484 12.8058 10.6961L12.8058 1.69613ZM1.90633 13.0098L12.5129 2.40324L11.0987 0.989026L0.492112 11.5956L1.90633 13.0098Z" fill="#236AD9"/>
+                      </svg></span>
+                </a>
+              </div>
+          </div>
+          <div class="blog-card">
+            <div class="blog-card__image">
+              <img src="/assets/images/growing-up.png" alt="Blog Post Image" />
+            </div>
+            <div class="blog-card__content">
+                <div class="blog-card__meta">
+                 <div>
+                  <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.64115 7.01289C9.37646 6.64328 9.96558 6.03642 10.3132 5.29045C10.6608 4.54449 10.7466 3.70307 10.5567 2.90231C10.3667 2.10154 9.91222 1.38827 9.26662 0.877883C8.62102 0.367496 7.8221 0.0898438 6.99912 0.0898438C6.17614 0.0898438 5.37723 0.367496 4.73163 0.877883C4.08603 1.38827 3.6315 2.10154 3.44157 2.90231C3.25164 3.70307 3.33743 4.54449 3.68505 5.29045C4.03266 6.03642 4.62178 6.64328 5.3571 7.01289C3.52997 7.38583 1.88673 8.3759 0.703145 9.81695C0.488994 10.0792 0.375524 10.4092 0.383176 10.7477C0.390828 11.0862 0.5191 11.4108 0.744883 11.6631C1.53568 12.5368 2.50079 13.2352 3.57801 13.7132C4.65522 14.1911 5.82063 14.4381 6.99912 14.4381C8.17761 14.4381 9.34303 14.1911 10.4202 13.7132C11.4975 13.2352 12.4626 12.5368 13.2534 11.6631C13.4791 11.4108 13.6074 11.0862 13.6151 10.7477C13.6227 10.4092 13.5093 10.0792 13.2951 9.81695C12.1115 8.3759 10.4683 7.38583 8.64115 7.01289Z" fill="#236AD9"/>
+                  </svg>
+  
+                  <span class="blog-card__author">Charles Robert</span>
+                      
+                 </div>
+                 <div class="blog-card__calender">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.756204 6.09511C0.70467 5.09029 0.975404 4.09776 1.52326 3.26557L1.66597 3.06094L1.67776 3.04973L1.77684 2.93559L1.88063 2.81904L1.89243 2.80703C2.09058 2.60758 2.30996 2.43216 2.54664 2.28238L2.61347 2.24083L2.68031 2.20228L2.83757 2.11337C2.90126 2.08373 2.97046 2.04849 3.03415 2.01885C3.08054 2.00123 3.12694 1.978 3.17333 1.96038C3.26061 1.92433 3.35339 1.88909 3.44618 1.85945C3.47763 1.84423 3.51066 1.83222 3.54447 1.82421L3.58202 1.80939L3.6231 1.79457C4.04614 1.67042 4.48097 1.58471 4.92052 1.54546L4.875 1.5507V0.655526C4.875 0.296601 5.16989 0.00638857 5.53459 0.00638857C5.89929 0.00638857 6.195 0.296601 6.195 0.655526V3.48489C6.195 3.84382 5.89929 4.13484 5.53459 4.13484C5.16989 4.13484 4.875 3.84382 4.875 3.48489L4.87504 2.83076C4.44206 2.87333 4.0169 2.9791 3.61366 3.14665C2.5731 3.60626 2.07683 4.48153 2.0298 5.86862L2.0261 6.0919V6.44033H15.9745V6.08309C16.0012 5.44069 15.8699 4.8015 15.5916 4.22399C15.3242 3.72977 14.8965 3.3461 14.3799 3.13784C14.0509 2.99879 13.7063 2.90177 13.3541 2.84884L13.125 2.8215L13.125 3.48163C13.125 3.83901 12.8297 4.12847 12.465 4.12847C12.1004 4.12847 11.805 3.83901 11.805 3.48163L11.805 2.7729L6.20142 2.77339V1.48619L11.805 1.4859L11.805 0.651719C11.8017 0.294341 12.0954 0.00245597 12.4601 1.50704e-05C12.8247 -0.00239531 13.1226 0.284639 13.125 0.642016L13.1256 1.54572C13.4458 1.57675 13.7635 1.6316 14.0761 1.70997L14.3869 1.79618C14.4121 1.80098 14.431 1.80739 14.4656 1.8194C14.5002 1.83142 14.5293 1.84343 14.5639 1.85465C14.6559 1.88428 14.7416 1.91953 14.8304 1.95557C14.8815 1.97319 14.9287 1.99642 14.9688 2.01405C15.038 2.04368 15.1088 2.07893 15.1654 2.10856C15.2236 2.1382 15.2794 2.17104 15.3281 2.19747C15.3769 2.22391 15.4146 2.25354 15.4555 2.27757C15.6336 2.39051 15.8029 2.51787 15.961 2.65796L16.1152 2.80222L16.1223 2.81424L16.2301 2.92658L16.3315 3.04492L16.337 3.05614C16.93 3.86132 17.249 4.83918 17.25 5.84103L17.2436 6.0919V6.44033H17.25V13.4192C17.25 16.4624 15.519 18 12.0883 18H5.90379C2.48104 18 0.75 16.4624 0.75 13.4192V6.44033H0.756204V6.09511ZM12.7729 12.8217C12.348 12.8217 12.0097 13.1642 12.0097 13.5865C12.0175 14.0087 12.3559 14.3513 12.7729 14.3513C13.1899 14.3513 13.5283 14.0087 13.5283 13.5865C13.5283 13.1642 13.1899 12.8217 12.7729 12.8217ZM9.00393 12.8137C8.57904 12.8217 8.2407 13.1642 8.2407 13.5865C8.2407 14.0087 8.58691 14.3513 9.00393 14.3513C9.42096 14.3513 9.7593 14.0087 9.7593 13.5785C9.75143 13.1642 9.42096 12.8217 9.00393 12.8137ZM5.22711 12.8137C4.80222 12.8137 4.46388 13.1642 4.47175 13.5865C4.47175 14.0087 4.81009 14.3513 5.22711 14.3513C5.64413 14.3513 5.98248 14.0007 5.98248 13.5785C5.98248 13.1563 5.64413 12.8137 5.22711 12.8137ZM12.7729 9.55531C12.348 9.55531 12.0175 9.89788 12.0175 10.3201C12.0175 10.7423 12.3559 11.0849 12.7729 11.0849C13.1899 11.0849 13.5283 10.7423 13.5283 10.3201C13.5283 9.89788 13.1899 9.55531 12.7729 9.55531ZM9.00393 9.54734C8.57904 9.55531 8.2407 9.89788 8.2407 10.3201C8.2407 10.7423 8.58691 11.0849 9.00393 11.0849C9.42096 11.0849 9.7593 10.7423 9.7593 10.3121C9.7593 9.89788 9.42096 9.55531 9.00393 9.54734ZM5.23498 9.54734C4.81009 9.54734 4.47175 9.89788 4.47175 10.3201C4.47175 10.7423 4.81009 11.0849 5.22711 11.0849C5.652 11.0849 5.99034 10.7344 5.98248 10.3121C5.98248 9.88991 5.64413 9.54734 5.23498 9.54734Z" fill="#236AD9"/>
+                  </svg>
+                      
+  
+                  <span class="blog-card__author">Charles Robert</span>
+                      
+                 </div>
+                </div>
+                <h2 class="blog-card__title">10 reasons why every business should consider having a website</h2>
+                <p class="blog-card__excerpt">
+                  At Websolutely, we specialize in creating affordable, high-performance, custom-coded...
+                </p>
+                <a href="#" class="blog-card__link">
+                  Read More <span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.8058 1.69613C12.8058 1.14385 12.3581 0.696134 11.8058 0.696133L2.80582 0.696133C2.25354 0.696133 1.80582 1.14385 1.80582 1.69613C1.80582 2.24842 2.25354 2.69613 2.80582 2.69613L10.8058 2.69613L10.8058 10.6961C10.8058 11.2484 11.2535 11.6961 11.8058 11.6961C12.3581 11.6961 12.8058 11.2484 12.8058 10.6961L12.8058 1.69613ZM1.90633 13.0098L12.5129 2.40324L11.0987 0.989026L0.492112 11.5956L1.90633 13.0098Z" fill="#236AD9"/>
+                      </svg></span>
+                </a>
+              </div>
+          </div>
+        </div>
+    </section>
+
+
+           <!-- ============================================ -->
+    <!--                   Pricing                    -->
+    <!-- ============================================ -->
+      
+    <section class="get-it-done-section">
+        <header class="get-it-done-section__header">
+            <div class="get-it-done-section__title-1">
+                Get it done <span>with us today</span>
+            </div>
+            <div class="get-it-done-section__description">
+                At Websolutely, we specialize in creating affordable, high-performance, custom-coded websites designed to showcase the unique character of your business. We absolutely ensure you stand out in the digital world.
+            </div>
+            <button class="get-it-done-section__cta">Get an Estimate Now</button>
+        </header>
+    
+        <div class="get-it-done-section__illustration">
+            <img src="/assets/images/get-done.png" alt="Illustration">
+        </div>
+    </section>
+    
+
+    
+ 
+      
+
+
+
+    <!-- ============================================ -->
+    <!--                   Reviews                    -->
+    <!-- ============================================ -->
+
+
+    {% include 'components/cta.html' %}
+{% endblock %}

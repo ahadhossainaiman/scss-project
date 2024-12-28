@@ -121,6 +121,7 @@
             margin-bottom: clamp(2.5rem, 4vw, 3rem);
             color: var(--bodyTextColorWhite);
             text-align: center;
+            font-weight: normal;
         }
 
         .cs-button-solid {
@@ -293,7 +294,7 @@
         background-color: #fff;
         max-width: calc(1320 / 13 * 1em);
         box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
-        // padding: calc(30 / 16 * 1em) calc(10 / 16 * 1em);
+        padding: calc(30 / 16 * 1em) calc(10 / 16 * 1em);
         width: 90%;
         p{
             font-size: 16px;

@@ -610,6 +610,7 @@
 @media only screen and (min-width: 0rem) {
   #portfolio {
     margin-top: 50px;
+    margin-bottom: 50px;
   }
   #portfolio p {
     text-align: center;
@@ -696,10 +697,9 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.125rem;
     line-height: 1.5em;
-    font-weight: 600;
+    font-weight: normal;
     margin-bottom: 1rem;
     margin-top: 20px;
-    width: 900px;
     margin: auto;
   }
   #portfolio h1 {
@@ -714,15 +714,19 @@
     color: var(--primary);
   }
   #portfolio .cs-portfolio-container {
+    width: 1440px;
+    margin: auto;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    margin: -150px 10px;
   }
   #portfolio .portfolio-images img {
-    width: 50vw;
+    width: 720px;
     height: auto;
+  }
+  #portfolio .cs-features {
+    margin-top: 20px;
   }
   #portfolio .cs-portfolio-title {
     text-align: left;
@@ -730,8 +734,34 @@
   #portfolio .cs-portfolio-text {
     text-align: left;
   }
+  #portfolio .cs-portfolio {
+    width: 950px !important;
+  }
   #portfolio .cs-portfolio-content {
-    width: 40%;
+    width: 720px;
+  }
+  #portfolio .cs-portfolio-content p {
+    text-align: left;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.5em;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    margin-top: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  #portfolio .cs-portfolio-content h1 {
+    text-align: left;
+    color: black;
+    font-size: 3.75rem;
+    line-height: 1.5em;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  #portfolio .cs-portfolio-content h1 span {
+    color: var(--primary);
   }
 }
 /*-- -------------------------- -->
@@ -741,15 +771,6 @@
   #why-choose-us {
     margin-top: 50px;
     margin: auto;
-  }
-  #why-choose-us p {
-    text-align: center;
-    color: var(--primary);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    line-height: 1.5em;
-    font-weight: 600;
-    margin-bottom: 1rem;
   }
   #why-choose-us p {
     text-align: center;
@@ -774,14 +795,14 @@
   #why-choose-us .cs-portfolio {
     color: rgb(82, 82, 82);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
+    font-size: 1.125rem;
     line-height: 1.5em;
     font-weight: 400;
     margin-bottom: 1rem;
     text-align: center;
   }
   #why-choose-us .portfolio-features {
-    margin: 0px 10px;
+    margin: 20px 10px;
   }
   #why-choose-us .why-choose-images img {
     width: 99vw;
@@ -846,7 +867,6 @@
     font-size: 1rem;
     line-height: 1.5em;
     font-weight: 600;
-    margin-bottom: 1rem;
     width: 900px;
     margin: auto;
   }

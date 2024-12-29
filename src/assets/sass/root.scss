@@ -82,7 +82,7 @@
         z-index: 1;
         position: relative;
         display: inline-block;
-        background-color: var(--primary);
+        background-color: var(--btn);
         width: auto;
         padding: 0 calc(30 / 16 * 1rem);
         text-decoration: none;
@@ -90,6 +90,7 @@
         font-size: calc(16 / 16 * 1rem);
         line-height: calc(50 / 16 * 1em);
         font-weight: bold;
+        border-radius: 10px;
 
         // Transition Properties
         color: #000;
@@ -929,7 +930,7 @@
     #cs-navigation {
         z-index: 10000;
         position: fixed;
-        background-color: #fff;
+        background-color: #236AD9;
         width: 100%;
         /* prevents padding from affecting height and width */
         box-sizing: border-box;
@@ -937,13 +938,12 @@
         /* remove the font family so the Stitch inherits the fonts from your global stylesheet */
         font-family: "Roboto", "Arial", sans-serif;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
         .cs-container {
             display: flex;
             justify-content: flex-end;
             align-items: center;
             margin: auto;
-            max-width: calc(1280 / 16 * 1rem);
+            max-width: calc(1440 / 16 * 1rem);
             width: 100%;
             gap: calc(24 / 16 * 1rem);
         }
@@ -981,6 +981,7 @@
             padding: 0;
             /* 20px - 36px */
             gap: clamp(1.25rem, 2.6vw, 2.25rem);
+          
         }
 
         .cs-li {
@@ -988,6 +989,10 @@
             list-style: none;
             /* prevent flexbox from squishing it */
             flex: none;
+            color: white;
+            a{
+                color: white;
+            }
         }
 
         .cs-li-link {
@@ -995,6 +1000,7 @@
             display: block;
             margin: 0;
             text-decoration: none;
+           
             /* 14px - 16px */
             font-size: clamp(0.875rem, 1vw, 1rem);
             line-height: 1.5em;
@@ -1013,7 +1019,7 @@
                 content: "";
                 opacity: 1;
                 display: block;
-                background: var(--primary);
+                background: black;
                 height: 2px;
                 width: 0%;
                 transition: width 0.3s;

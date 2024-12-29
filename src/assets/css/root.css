@@ -68,7 +68,7 @@
     z-index: 1;
     position: relative;
     display: inline-block;
-    background-color: var(--primary);
+    background-color: var(--btn);
     width: auto;
     padding: 0 1.875rem;
     text-decoration: none;
@@ -76,6 +76,7 @@
     font-size: 1rem;
     line-height: 3.125em;
     font-weight: bold;
+    border-radius: 10px;
     color: #000;
     transition: color 0.3s;
     transition-delay: 0.1s;
@@ -739,7 +740,7 @@
   #cs-navigation {
     z-index: 10000;
     position: fixed;
-    background-color: #fff;
+    background-color: #236AD9;
     width: 100%;
     /* prevents padding from affecting height and width */
     box-sizing: border-box;
@@ -753,7 +754,7 @@
     justify-content: flex-end;
     align-items: center;
     margin: auto;
-    max-width: 80rem;
+    max-width: 90rem;
     width: 100%;
     gap: 1.5rem;
   }
@@ -793,6 +794,10 @@
     list-style: none;
     /* prevent flexbox from squishing it */
     flex: none;
+    color: white;
+  }
+  #cs-navigation .cs-li a {
+    color: white;
   }
   #cs-navigation .cs-li-link {
     position: relative;
@@ -815,7 +820,7 @@
     content: "";
     opacity: 1;
     display: block;
-    background: var(--primary);
+    background: black;
     height: 2px;
     width: 0%;
     transition: width 0.3s;
